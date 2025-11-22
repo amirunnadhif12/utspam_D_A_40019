@@ -23,45 +23,97 @@ class _LoginPageState extends State<LoginPage> {
     final auth = Provider.of<AuthController>(context, listen: false);
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.white, elevation: 0, foregroundColor: Colors.black),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 28),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              const SizedBox(height: 18),
-              const Align(alignment: Alignment.centerLeft, child: Text('Login', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold))),
-              const SizedBox(height: 8),
-              const Align(alignment: Alignment.centerLeft, child: Text('Welcome back! Please login to continue.', style: TextStyle(color: Colors.black54))),
-              const SizedBox(height: 28),
-              TextFormField(controller: userC, decoration: const InputDecoration(labelText: 'Username', prefixIcon: Icon(Icons.person)), validator: (v) => v == null || v.isEmpty ? 'Wajib diisi' : null),
-              const SizedBox(height: 14),
-              TextFormField(controller: passC, obscureText: _obscure, decoration: InputDecoration(labelText: 'Password', prefixIcon: const Icon(Icons.lock), suffixIcon: IconButton(icon: Icon(_obscure ? Icons.visibility_off : Icons.visibility), onPressed: () => setState(() => _obscure = !_obscure))), validator: (v) => v == null || v.length < 6 ? 'Minimal 6 karakter' : null),
-              const SizedBox(height: 22),
-              SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: ElevatedButton(
-                  onPressed: _loading ? null : () async {
-                    if (!_formKey.currentState!.validate()) return;
-                    setState(() => _loading = true);
-                    final ok = await auth.login(userC.text.trim(), passC.text.trim());
-                    setState(() => _loading = false);
-                    if (!ok) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Username atau password salah')));
-                    } else {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomePage()));
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: primaryGreen, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                  child: _loading ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2)) : const Text('Login', style: TextStyle(fontSize: 18)),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [Color(0xFFe8f7f0), Color(0xFFffffff)], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+            child: Column(
+              children: [
+                const SizedBox(height: 8),
+                // Logo / avatar
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white, boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)]),
+                  child: const Icon(Icons.local_pharmacy, color: primaryGreen, size: 44),
                 ),
-              ),
-              const SizedBox(height: 12),
-              TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterPage())), child: const Text('Don\'t have an account? Sign Up')),
-            ],
+                const SizedBox(height: 18),
+                const Text('Welcome Back', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 6),
+                const Text('Login to continue to your account', style: TextStyle(color: Colors.black54)),
+                const SizedBox(height: 20),
+
+                // Card with form
+                Card(
+                  elevation: 6,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(18),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: userC,
+                            decoration: const InputDecoration(prefixIcon: Icon(Icons.person), labelText: 'Username', filled: true, fillColor: Colors.white),
+                            validator: (v) => v == null || v.isEmpty ? 'Wajib diisi' : null,
+                          ),
+                          const SizedBox(height: 12),
+                          TextFormField(
+                            controller: passC,
+                            obscureText: _obscure,
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.lock),
+                              labelText: 'Password',
+                              filled: true,
+                              fillColor: Colors.white,
+                              suffixIcon: IconButton(icon: Icon(_obscure ? Icons.visibility_off : Icons.visibility), onPressed: () => setState(() => _obscure = !_obscure)),
+                            ),
+                            validator: (v) => v == null || v.length < 6 ? 'Minimal 6 karakter' : null,
+                          ),
+                          const SizedBox(height: 18),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: _loading ? null : () async {
+                                if (!_formKey.currentState!.validate()) return;
+                                setState(() => _loading = true);
+                                final ok = await auth.login(userC.text.trim(), passC.text.trim());
+                                setState(() => _loading = false);
+                                if (!ok) {
+                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Username atau password salah')));
+                                } else {
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomePage()));
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(backgroundColor: primaryGreen, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                              child: _loading ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2)) : const Text('Login', style: TextStyle(fontSize: 16)),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterPage())), child: const Text("Don't have an account? Sign Up")),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+                const Text('Or continue with', style: TextStyle(color: Colors.black54)),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    OutlinedButton.icon(onPressed: () {}, icon: const Icon(Icons.facebook, color: Color(0xFF1877F2)), label: const Text('Facebook')),
+                    const SizedBox(width: 10),
+                    OutlinedButton.icon(onPressed: () {}, icon: const Icon(Icons.g_mobiledata, color: Colors.red), label: const Text('Google')),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
