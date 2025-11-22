@@ -31,6 +31,7 @@ class RiwayatPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text('Riwayat Pembelian', style: TextStyle(color: Colors.white)),
         backgroundColor: primaryGreen,
       ),
