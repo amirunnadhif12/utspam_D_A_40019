@@ -32,7 +32,7 @@ class DetailTransaksiPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black12.withOpacity(0.08),
+                    color: Colors.black12.withAlpha(20),
                     blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
@@ -60,7 +60,7 @@ class DetailTransaksiPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black12.withOpacity(0.08),
+                    color: Colors.black12.withAlpha(20),
                     blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
@@ -101,6 +101,7 @@ class DetailTransaksiPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12)),
                       padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
+                    // TextStyle dibuat const sehingga Text bisa tetap const
                     child: const Text(
                       'Edit',
                       style: TextStyle(
@@ -117,8 +118,20 @@ class DetailTransaksiPage extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () async {
-                      await trxCtrl.deleteTransaksi(transaksi.id);
-                      Navigator.pop(context);
+                      try {
+                        if (transaksi.id == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('ID transaksi tidak tersedia')),
+                          );
+                          return;
+                        }
+                        await trxCtrl.deleteTransaksi(transaksi.id!);
+                        Navigator.pop(context);
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Gagal menghapus transaksi')),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
@@ -127,6 +140,7 @@ class DetailTransaksiPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                     ),
+                    // TextStyle dibuat const sehingga Text bisa tetap const
                     child: const Text('Batalkan',
                         style: TextStyle(fontSize: 16)),
                   ),

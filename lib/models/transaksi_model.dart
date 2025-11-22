@@ -1,6 +1,6 @@
 class TransaksiModel {
-  String id;
-  String obatId;
+  int? id;
+  String? obatId;
   String obatNama;
   int hargaSatuan;
   int jumlah;
@@ -10,11 +10,10 @@ class TransaksiModel {
   String? nomorResep;
   String? catatan;
   String tanggal;
-  String status;
 
   TransaksiModel({
-    required this.id,
-    required this.obatId,
+    this.id,
+    this.obatId,
     required this.obatNama,
     required this.hargaSatuan,
     required this.jumlah,
@@ -24,10 +23,9 @@ class TransaksiModel {
     this.nomorResep,
     this.catatan,
     required this.tanggal,
-    this.status = 'selesai',
   });
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         'id': id,
         'obatId': obatId,
         'obatNama': obatNama,
@@ -39,21 +37,23 @@ class TransaksiModel {
         'nomorResep': nomorResep,
         'catatan': catatan,
         'tanggal': tanggal,
-        'status': status,
       };
 
-  factory TransaksiModel.fromJson(Map<String, dynamic> j) => TransaksiModel(
-        id: j['id'],
-        obatId: j['obatId'],
-        obatNama: j['obatNama'],
-        hargaSatuan: j['hargaSatuan'],
-        jumlah: j['jumlah'],
-        total: j['total'],
-        namaPembeli: j['namaPembeli'],
-        metode: j['metode'],
-        nomorResep: j['nomorResep'],
-        catatan: j['catatan'],
-        tanggal: j['tanggal'],
-        status: j['status'] ?? 'selesai',
+  factory TransaksiModel.fromMap(Map<String, dynamic> m) => TransaksiModel(
+        id: m['id'] as int?,
+        obatId: m['obatId']?.toString(),
+        obatNama: m['obatNama'] ?? '',
+        hargaSatuan: m['hargaSatuan'] ?? 0,
+        jumlah: m['jumlah'] ?? 0,
+        total: m['total'] ?? 0,
+        namaPembeli: m['namaPembeli'] ?? '',
+        metode: m['metode'] ?? '',
+        nomorResep: m['nomorResep'],
+        catatan: m['catatan'],
+        tanggal: m['tanggal'] ?? '',
       );
+
+  Map<String, dynamic> toJson() => toMap();
+
+  factory TransaksiModel.fromJson(Map<String, dynamic> m) => TransaksiModel.fromMap(m);
 }

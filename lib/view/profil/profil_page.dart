@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../controller/auth_controller.dart';
 import '../auth/welcome_page.dart';
+import 'edit_profile_page.dart';
 
 class ProfilPage extends StatelessWidget {
   const ProfilPage({super.key});
@@ -14,111 +15,102 @@ class ProfilPage extends StatelessWidget {
     final user = auth.user;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primaryGreen,
-        title: const Text('Profil Pengguna'),
-      ),
-      backgroundColor: Colors.white,
+      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0, foregroundColor: Colors.black87, title: const Text('Profile')),
+      backgroundColor: const Color(0xFFF6FBFF),
       body: user == null
-          ? const Center(
-              child: Text(
-                'Data user tidak ditemukan 😅',
-                style: TextStyle(fontSize: 16),
-              ),
-            )
+          ? const Center(child: Text('Data user tidak ditemukan 😅'))
           : Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // foto
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: primaryGreen.withOpacity(0.2),
-                    ),
-                    child: const Icon(Icons.person, size: 60, color: primaryGreen),
-                  ),
-                  const SizedBox(height: 16),
-
-                  Text(
-                    user.nama,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Card informasi
-                  Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                    elevation: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.all(18),
-                      child: Column(
-                        children: [
-                          _buildRow(Icons.phone, 'Telepon', user.telepon),
-                          const Divider(),
-                          _buildRow(Icons.location_on, 'Alamat', user.alamat),
-                          const Divider(),
-                          _buildRow(Icons.account_circle, 'Username', user.username),
-                        ],
+                  const SizedBox(height: 12),
+                  // Avatar with edit badge
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 56,
+                        backgroundColor: primaryGreen.withAlpha(30),
+                        child: ClipOval(
+                            child: Builder(builder: (_) {
+                          final fallback = 'https://avatars.dicebear.com/api/avataaars/${Uri.encodeComponent(user.nama)}.png?background=%23ffffff';
+                          final avatar = (user.avatarUrl != null && user.avatarUrl!.isNotEmpty) ? user.avatarUrl! : fallback;
+                          return Image.network(
+                            avatar,
+                            width: 108,
+                            height: 108,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) => const Icon(Icons.person, size: 64, color: Colors.white),
+                          );
+                        })),
                       ),
+                      Positioned(
+                        bottom: 0,
+                        right: 8,
+                        child: GestureDetector(
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const EditProfilePage())),
+                          child: Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(color: primaryGreen, shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 2)),
+                            child: const Icon(Icons.edit, color: Colors.white, size: 18),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+
+                  const SizedBox(height: 12),
+                  Text(user.nama, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 4),
+                  const Text('Buyer', style: TextStyle(color: Colors.black54)),
+
+                  const SizedBox(height: 20),
+
+                  // Options
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        _optionTile(context, Icons.edit, 'Edit Profile', () => Navigator.push(context, MaterialPageRoute(builder: (_) => const EditProfilePage()))),
+                        _optionTile(context, Icons.notifications, 'Notification', () {}),
+                        _optionTile(context, Icons.location_on, 'Shipping Address', () {}),
+                        _optionTile(context, Icons.lock, 'Change Password', () {}),
+                        const SizedBox(height: 8),
+                      ],
                     ),
                   ),
 
-                  const Spacer(),
-
+                  // Sign out
                   SizedBox(
                     width: double.infinity,
+                    height: 48,
                     child: ElevatedButton.icon(
                       onPressed: () async {
                         await auth.logout();
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (_) => const WelcomePage()),
-                          (route) => false,
-                        );
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const WelcomePage()), (route) => false);
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
                       icon: const Icon(Icons.logout, color: Colors.white),
-                      label: const Text(
-                        'Logout',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ),
+                      label: const Text('Sign Out', style: TextStyle(fontSize: 16, color: Colors.white)),
+                      style: ElevatedButton.styleFrom(backgroundColor: primaryGreen, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                     ),
                   ),
+                  const SizedBox(height: 12),
                 ],
               ),
             ),
     );
   }
 
-  Widget _buildRow(IconData icon, String label, String value) {
-    return Row(
-      children: [
-        Icon(icon, color: Colors.black54),
-        const SizedBox(width: 14),
-        Expanded(
-          child: Text(
-            label,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-          ),
-        ),
-        Text(
-          value,
-          style: const TextStyle(fontSize: 14, color: Colors.black87),
-        ),
-      ],
+  Widget _optionTile(BuildContext context, IconData icon, String title, VoidCallback onTap) {
+    const primaryGreen = Color(0xFF1AAE6F);
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: ListTile(
+        onTap: onTap,
+        leading: CircleAvatar(backgroundColor: primaryGreen, child: Icon(icon, color: Colors.white)),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+        trailing: const Icon(Icons.chevron_right),
+      ),
     );
   }
 }

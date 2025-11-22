@@ -18,7 +18,7 @@ class WelcomePage extends StatelessWidget {
             child: Stack(
               children: [
                 Image.asset('assets/images/welcome_bg.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity),
-                Container(color: Colors.black.withOpacity(0.010)),
+                Container(color: Colors.black.withAlpha(3)),
               ],
             ),
           ),

@@ -51,7 +51,7 @@ class _EditTransaksiPageState extends State<EditTransaksiPage> {
                   borderRadius: BorderRadius.circular(14),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black12.withOpacity(0.06),
+                      color: Colors.black12.withAlpha(15),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     )
@@ -63,7 +63,7 @@ class _EditTransaksiPageState extends State<EditTransaksiPage> {
                       initialValue: jumlah.toString(),
                       decoration: const InputDecoration(
                         labelText: "Jumlah Pembelian",
-                        prefixIcon: Icon(Icons.onetwothree),
+                        prefixIcon: Icon(Icons.format_list_numbered),
                       ),
                       keyboardType: TextInputType.number,
                       validator: (v) {
@@ -86,7 +86,10 @@ class _EditTransaksiPageState extends State<EditTransaksiPage> {
                           .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                           .toList(),
                       onChanged: (v) {
-                        setState(() => metode = v!);
+                        setState(() {
+                          metode = v!;
+                          if (metode != 'resep') nomorResep = null;
+                        });
                       },
                     ),
                     const SizedBox(height: 14),
@@ -179,7 +182,6 @@ class _EditTransaksiPageState extends State<EditTransaksiPage> {
                               metode == "resep" ? nomorResep : null,
                           catatan: catatan,
                           tanggal: widget.transaksi.tanggal,
-                          status: widget.transaksi.status,
                         );
 
                         await trxCtrl.updateTransaksi(updated);

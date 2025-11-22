@@ -178,10 +178,8 @@ class _BeliObatPageState extends State<BeliObatPage> {
                   _form.currentState!.save();
 
                   final total = selected!.harga * jumlah;
-                  final id = trxCtrl.generateId();
 
                   final t = TransaksiModel(
-                    id: id,
                     obatId: selected!.id,
                     obatNama: selected!.nama,
                     hargaSatuan: selected!.harga,
@@ -189,7 +187,7 @@ class _BeliObatPageState extends State<BeliObatPage> {
                     total: total,
                     namaPembeli: namaPembeli!,
                     metode: metode,
-                    nomorResep: metode == "resep" ? nomorResep : null,
+                    nomorResep: metode == 'resep' ? nomorResep : null,
                     catatan: catatan,
                     tanggal: DateTime.now().toIso8601String(),
                   );
@@ -221,7 +219,7 @@ class _BeliObatPageState extends State<BeliObatPage> {
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: Colors.black12.withOpacity(0.06),
+            color: Colors.black12.withAlpha(15),
             blurRadius: 10,
             offset: const Offset(0, 4),
           )

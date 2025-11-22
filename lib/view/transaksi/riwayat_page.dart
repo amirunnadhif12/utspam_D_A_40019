@@ -38,7 +38,7 @@ class RiwayatPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black12.withOpacity(0.08),
+                        color: Colors.black12.withAlpha(20),
                         blurRadius: 8,
                         offset: const Offset(0, 4),
                       ),
@@ -50,7 +50,7 @@ class RiwayatPage extends StatelessWidget {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: primaryGreen.withOpacity(0.15),
+                        color: primaryGreen.withAlpha(38),
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
