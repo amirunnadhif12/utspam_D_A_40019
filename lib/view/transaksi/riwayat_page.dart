@@ -31,7 +31,7 @@ class RiwayatPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Riwayat Pembelian'),
+        title: const Text('Riwayat Pembelian', style: TextStyle(color: Colors.white)),
         backgroundColor: primaryGreen,
       ),
       body: trxCtrl.list.isEmpty
