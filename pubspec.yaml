@@ -20,7 +20,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/welcome_bg.jpg
-    - assets/images/obat_paracetamol.png
-    - assets/images/obat_amoxicillin.png
-    - assets/images/obat_vitamin.png
+    - assets/images/
