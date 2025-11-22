@@ -12,20 +12,14 @@ final List<ObatModel> obatDummy = [
     id: 'o2',
     nama: 'Ibuprofen',
     kategori: 'Analgesik',
-    gambar: '',
+    gambar: 'assets/images/Ibuprofen.jpg',
     harga: 8000),
   ObatModel(
     id: 'o3',
-    nama: 'Obat Sakit Tenggorokan',
+    nama: 'SP Troches Meiji Strawberry',
     kategori: 'Analgesik',
-    gambar: '',
+    gambar: 'assets/images/SP_Troches_Meiji_Strawberry.jpg',
     harga: 8000),
-  ObatModel(
-    id: 'o4',
-    nama: 'Pain Relief Forte',
-    kategori: 'Analgesik',
-    gambar: '',
-    harga: 12000),
   ObatModel(
     id: 'o5',
     nama: 'Analgesik Anak',
@@ -42,14 +36,14 @@ final List<ObatModel> obatDummy = [
     harga: 15000),
   ObatModel(
     id: 'o7',
-    nama: 'Antibiotik Topikal',
+    nama: 'Sagestam',
     kategori: 'Antibiotik',
-    gambar: '',
+    gambar: 'assets/images/sagestam.jpg',
     harga: 14000),
   ObatModel(
     id: 'o8',nama: 'Ciprofloxacin',
     kategori: 'Antibiotik',
-    gambar: '',
+    gambar: 'assets/images/Ciprofloxacin.png',
     harga: 22000),
 
   // Suplemen (4)
@@ -61,21 +55,21 @@ final List<ObatModel> obatDummy = [
     harga: 10000),
   ObatModel(
     id: 'o10',
-    nama: 'Multivitamin Dewasa',
+    nama: 'Pharmaton',
     kategori: 'Suplemen',
-    gambar: '',
+    gambar: 'assets/images/pharmaton.jpg',
     harga: 25000),
   ObatModel(
     id: 'o11',
-    nama: 'Kalsium + D3',
+    nama: 'Cavit-D3',
     kategori: 'Suplemen',
-    gambar: '',
+    gambar: 'assets/images/Cavit-D3.jpg',
     harga: 22000),
   ObatModel(
     id: 'o12',
-    nama: 'Suplemen Omega-3',
+    nama: 'Omega 3 fish oil',
     kategori: 'Suplemen',
-    gambar: '',
+    gambar: 'assets/images/Omega3.webp',
     harga: 35000),
 
   // Obat Kulit (3)
