@@ -109,7 +109,7 @@ final List<ObatModel> obatDummy = [
     id: 'o18',
     nama: 'Artificial tears',
     kategori: 'Obat Mata',
-    gambar: 'assets/images/Artificial.jpg',
+    gambar: 'assets/images/Artificial.jpeg',
     harga: 20000),
 
   // Gastrointestinal (3)
