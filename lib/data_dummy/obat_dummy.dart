@@ -117,19 +117,19 @@ final List<ObatModel> obatDummy = [
     id: 'o19',
     nama: 'Omeprazole',
     kategori: 'Gastrointestinal',
-    gambar: '',
+    gambar: 'assets/images/Omeprazole.webp',
     harga: 20000),
   ObatModel(
     id: 'o20',
     nama: 'Loperamide',
     kategori: 'Gastrointestinal',
-    gambar: '',
+    gambar: 'assets/images/Loperamide.png',
     harga: 9000),
   ObatModel(
     id: 'o21',
     nama: 'Metoclopramide',
     kategori: 'Gastrointestinal',
-    gambar: '',
+    gambar: 'assets/images/Metoclopramide.jpeg',
    harga: 12000),
 
   // Respiratory (4)
