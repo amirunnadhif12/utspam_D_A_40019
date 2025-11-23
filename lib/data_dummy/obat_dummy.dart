@@ -69,27 +69,27 @@ final List<ObatModel> obatDummy = [
     id: 'o12',
     nama: 'Omega 3 fish oil',
     kategori: 'Suplemen',
-    gambar: 'assets/images/Omega3.webp',
+    gambar: 'assets/images/Omega3.jpg',
     harga: 35000),
 
   // Obat Kulit (3)
   ObatModel(
     id: 'o13',
-    nama: 'Salep Antijamur',
+    nama: 'Canesten',
     kategori: 'Obat Kulit',
-    gambar: '',
+    gambar: 'assets/images/Canesten.jpg',
     harga: 15000),
   ObatModel(
     id: 'o14',
-    nama: 'Salep Kortikosteroid',
+    nama: 'betason-n',
     kategori: 'Obat Kulit',
-    gambar: '',
+    gambar: 'assets/images/betason-n.jpg',
     harga: 20000),
   ObatModel(
     id: 'o15',
-    nama: 'Krim Pelembap',
+    nama: 'Cetaphil',
     kategori: 'Obat Kulit',
-    gambar: '',
+    gambar: 'assets/images/cetaphil.jpg',
     harga: 17000),
 
   // Obat Mata (3)
