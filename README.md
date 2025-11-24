@@ -1,1 +1,10 @@
-Artificial.jpeg
+![Gambar WhatsApp 2025-11-24 pukul 10 31 43_aca60cc1](https://github.com/user-attachments/assets/327fdc6f-90d2-4371-afb7-b9de05eeef34)
+![Gambar WhatsApp 2025-11-24 pukul 10 31 43_4c4a45de](https://github.com/user-attachments/assets/384b024f-0916-44f9-90bc-3f701230e10f)
+![Gambar WhatsApp 2025-11-24 pukul 10 31 44_7d9a66bb](https://github.com/user-attachments/assets/0837dd9e-23e5-4540-874e-12007c103d64)
+![Gambar WhatsApp 2025-11-24 pukul 10 31 43_a86bb5f6](https://github.com/user-attachments/assets/5fcfa274-0de7-4f2a-8b65-0340526b16a0)
+![Gambar WhatsApp 2025-11-24 pukul 10 31 43_6c756b21](https://github.com/user-attachments/assets/36694c15-7ea8-4bf2-9b9d-7b316c7a1672)
+![Gambar WhatsApp 2025-11-24 pukul 10 31 44_c42a2521](https://github.com/user-attachments/assets/856feed5-16af-4912-a17b-71dace0f7141)
+![Gambar WhatsApp 2025-11-24 pukul 10 31 45_707392ea](https://github.com/user-attachments/assets/75b240ad-d40d-4a19-b7d4-1085ab1ec067)
+![Gambar WhatsApp 2025-11-24 pukul 10 31 44_b976102e](https://github.com/user-attachments/assets/511ed08c-17ed-41ad-aea1-9ac08ff69f75)
+![Gambar WhatsApp 2025-11-24 pukul 10 31 44_415c9f0b](https://github.com/user-attachments/assets/ad3f1524-c564-4dd0-9a75-8c185dd654df)
+![Gambar WhatsApp 2025-11-24 pukul 10 31 45_2e193897](https://github.com/user-attachments/assets/805e2bde-c4c2-4bb4-9009-66745340b8ea)
